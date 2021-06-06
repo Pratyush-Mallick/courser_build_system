@@ -30,7 +30,8 @@ include sources.mk
 PLATFORM = HOST
 
 #Target File name
-TARGET = c1m2
+TARGET = course1
+
 
 # Architectures Specific Flags
 LINKER_FILE = ../msp432p401r.lds
@@ -46,9 +47,9 @@ ifeq ($(PLATFORM),MSP432)
                  -mfloat-abi=hard          \
                  -mfpu=fpv4-sp-d16         \
                  --specs=$(SPECS)
-	SOURCES += interrupts_msp432p401r_gcc.c \
-                   startup_msp432p401r_gcc.c \
-                   system_msp432p401r.c
+	SOURCES += src/interrupts_msp432p401r_gcc.c \
+                   src/startup_msp432p401r_gcc.c \
+                   src/system_msp432p401r.c
 
         LDFLAGS =  -T $(LINKER_FILE)
 	CPPFLAGS = -DMSP432 
@@ -91,6 +92,5 @@ $(TARGET).out: $(OBJS)
 
 .PHONY: clean
 clean:
-	rm -f *.o $(TARGET).out $(TARGET).map *.d *.dep *.i *.asm
-
+	rm -f src/*.o $(TARGET).out $(TARGET).map *.d src/*.dep src./*.i src/*.asm
 
